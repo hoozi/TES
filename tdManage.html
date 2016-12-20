@@ -81,13 +81,23 @@
                 </div>
             </div>
             <div class="grid_view">
-                <table cellpadding="0" cellspacing="0" width="100%" class="grid_main">
+                <table cellpadding="0" cellspacing="0" width="100%" class="grid_main grid_td">
                     <thead>
                         <tr>
                             <td colspan="11">
                                 <div class="grid_hd wfull clearfix">
                                     <b class="fl">托单列表</b>
-                                    <a href="###" class="db fr"><i class="ticons db t2icon"></i>评价</a>
+                                    <ul class="grid_tool fr clearfix">
+                                        <li class="upload"><a href="###" class="db" id="J_upload"><i class="ticons db t1icon"></i>上传单证</a></li>
+                                        <li class="make"><a href="###" class="db" id="J_make"><i class="ticons db t2icon"></i>制单</a></li>
+                                        <li class="edit"><a href="###" class="db" id="J_edit"><i class="ticons db t3icon"></i>编辑托单</a></li>
+                                        <li class="delete"><a href="###" class="db" id="J_delete"><i class="ticons db t4icon"></i>删除托单</a></li>
+                                        <li class="publish"><a href="###" class="db" id="J_publish"><i class="ticons db t5icon"></i>发布</a></li>
+                                        <li class="pay"><a href="###" class="db" id="J_pay"><i class="ticons db t6icon"></i>付费</a></li>
+                                        <li class="replay"><a href="###" class="db" id="J_replay"><i class="ticons db t7icon"></i>回填托单号</a></li>
+                                        <li class="download"><a href="###" class="db" id="J_download"><i class="ticons db t8icon"></i>下载单证附件</a></li>
+                                        <li class="view"><a href="###" class="db" id="J_view"><i class="ticons db t9icon"></i>查看状态</a></li>
+                                    </ul>
                                 </div>
                             </td>
                         </tr>
@@ -110,68 +120,117 @@
                             <td>YBT2016112500001</td>
                             <td>JIAYONG</td>
                             <td>cc/7103S</td>
-                            <td>111111111111</td>
-                            <td>11111111111111111111</td>
+                            <td>
+                                <div class="contract">
+                                    <a href="###" class="wicons db sicon">
+                                        <div class="hover_block">
+                                            <span class="db arrow_top"></span>
+                                            <ul>
+                                                <li>件数/毛重/体积：100/120/-</li>
+                                                <li>备注：这里放备注这里放备注这里放备注</li>
+                                            </ul>
+                                        </div>
+                                    </a>111111111111
+                                </div>
+                            </td>
+                            <td>CNNGB</td>
                             <td>12345</td>
                             <td>padmin</td>
                             <td>2016-11-25 11:39:00</td>
                             <td>padmin</td>
                             <td>2016-11-25 11:39:00</td>
                             <td>
-                                <div class="td_status"></div>
+                                <div class="td_status">
+                                    <div class="status_def">初始</div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="selected">
+                            <td>YBT2016112500001</td>
+                            <td>JIAYONG</td>
+                            <td>cc/7103S</td>
+                            <td>
+                                <div class="contract">
+                                    <a href="###" class="wicons db sicon">
+                                        <div class="hover_block">
+                                            <span class="db arrow_top"></span>
+                                            <ul>
+                                                <li>件数/毛重/体积：100/120/-</li>
+                                                <li>备注：这里放备注这里放备注这里放备注</li>
+                                            </ul>
+                                        </div>
+                                    </a>111111111111
+                                </div>
+                            </td>
+                            <td>CNNGB</td>
+                            <td>12345</td>
+                            <td>padmin</td>
+                            <td>2016-11-25 11:39:00</td>
+                            <td>padmin</td>
+                            <td>2016-11-25 11:39:00</td>
+                            <td>
+                                <div class="td_status">
+                                    <div class="status_pd">派单（报关员）</div>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <td>YBT2016112500001</td>
                             <td>JIAYONG</td>
                             <td>cc/7103S</td>
-                            <td>111111111111</td>
-                            <td>11111111111111111111</td>
+                            <td>
+                                <div class="contract">
+                                    <a href="###" class="wicons db sicon">
+                                        <div class="hover_block">
+                                            <span class="db arrow_top"></span>
+                                            <ul>
+                                                <li>件数/毛重/体积：100/120/-</li>
+                                                <li>备注：这里放备注这里放备注这里放备注</li>
+                                            </ul>
+                                        </div>
+                                    </a>111111111111
+                                </div>
+                            </td>
+                            <td>CNNGB</td>
                             <td>12345</td>
                             <td>padmin</td>
                             <td>2016-11-25 11:39:00</td>
                             <td>padmin</td>
                             <td>2016-11-25 11:39:00</td>
-                            <td></td>
+                            <td>
+                                <div class="td_status">
+                                    <div class="status_hpay">平台已接单（未支付）</div>
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td>YBT2016112500001</td>
                             <td>JIAYONG</td>
                             <td>cc/7103S</td>
-                            <td>111111111111</td>
-                            <td>11111111111111111111</td>
+                            <td>
+                                <div class="contract">
+                                    <a href="###" class="wicons db sicon">
+                                        <div class="hover_block">
+                                            <span class="db arrow_top"></span>
+                                            <ul>
+                                                <li>件数/毛重/体积：100/120/-</li>
+                                                <li>备注：这里放备注这里放备注这里放备注</li>
+                                            </ul>
+                                        </div>
+                                    </a>111111111111
+                                </div>
+                            </td>
+                            <td>CNNGB</td>
                             <td>12345</td>
                             <td>padmin</td>
                             <td>2016-11-25 11:39:00</td>
                             <td>padmin</td>
                             <td>2016-11-25 11:39:00</td>
-                            <td></td>
-                        </tr>
-                        <tr class="selected">
-                            <td>YBT2016112500001</td>
-                            <td>JIAYONG</td>
-                            <td>cc/7103S</td>
-                            <td>111111111111</td>
-                            <td>11111111111111111111</td>
-                            <td>12345</td>
-                            <td>padmin</td>
-                            <td>2016-11-25 11:39:00</td>
-                            <td>padmin</td>
-                            <td>2016-11-25 11:39:00</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>YBT2016112500001</td>
-                            <td>JIAYONG</td>
-                            <td>cc/7103S</td>
-                            <td>111111111111</td>
-                            <td>11111111111111111111</td>
-                            <td>12345</td>
-                            <td>padmin</td>
-                            <td>2016-11-25 11:39:00</td>
-                            <td>padmin</td>
-                            <td>2016-11-25 11:39:00</td>
-                            <td></td>
+                            <td>
+                                <div class="td_status">
+                                    <div class="status_npay">平台已接单（已支付）</div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -194,11 +253,85 @@
         <p>版权所有 © 2016宁波易步通信息服务平台  浙ICP备06015188号-3 <i class="wicons db picon"></i></p>
     </div>
 </div>
+<!--layer template-->
+<script type="text/template" id="temp_replay">
+    <table cellpadding="0" cellspacing="0" width="100%" class="layer_grid">
+        <tr>
+            <th>流水号</th>
+            <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+            <th>提单号</th>
+            <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+            <th>英文船名</th>
+            <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+            <th>航次</th>
+            <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+            <th>回填委托号</th>
+            <td><input type="text" name="" id=""></td>
+        </tr>
+    </table>
+</script>
+
+<script type="text/template" id="temp_view">
+    <div class="td_node">
+        <h2>流水号：YBT20161125000</h2>
+        <ul>
+            <li class="now">
+                <span class="db dot"></span>
+                <span class="db node_time">2016年11月17日 下午11：44</span>
+                <span class="db node_status">单证放行</span>
+            </li>
+            <li>
+                <span class="db dot"></span>
+                <span class="db node_time">2016年11月17日  下午11：44</span>
+                <span class="db node_status">已审核</span>
+            </li>
+            <li>
+                <span class="db dot"></span>
+                <span class="db node_time">2016年11月17日  下午11：44</span>
+                <span class="db node_status">已报关</span>
+            </li>
+            <li>
+                <span class="db dot"></span>
+                <span class="db node_time">2016年11月17日  下午11：44</span>
+                <span class="db node_status">已接单（报关员）</span>
+            </li>
+            <li>
+                <span class="db dot"></span>
+                <span class="db node_time">2016年11月17日  下午11：44</span>
+                <span class="db node_status">派单（报关员）</span>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<script type="text/template" id="temp_pay">
+    <table cellpadding="0" cellspacing="0" width="100%" class="layer_grid">
+        <tr>
+            <th>流水号</th>
+            <td><input type="text" name="" id="" readonly="true" class="disable"></td>
+        </tr>
+        <tr>
+            <th>类型</th>
+            <td><input type="text" name="" id="" readonly="true" class="disable"></td>
+        </tr>
+        <tr>
+            <th>金额</th>
+            <td><input type="text" name="" id="" readonly="true" class="disable"></td>
+        </tr>
+    </table>
+</script>
+
 <script src="assets/js/core/jquery.min.js"></script>  
-<script src="assets/js/components/jquery.cycle.min.js"></script>  
+<script src="assets/js/components/layer.js"></script>
 <script src="assets/js/core/template.js"></script>
-<script>
-    
-</script>  
+<script src="assets/js/tes_layer.js"></script> 
 </body>
 </html>

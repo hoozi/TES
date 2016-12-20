@@ -14,15 +14,14 @@
     //缓存
     var cache = {};
 
-    function Template(options) {
-        if(typeof options !== "String") {
-            this.opt = $.extend()
+    $.template = function(name, data){
+        var template = $("#"+name).html();
+        var argLen = arguments.length;
+        if(argLen == 1) {
+            return Handlebars.compile(template);
         } else {
-
+            return Handlebars.compile(template)(data);
         }
-    }
-    var fn = Template.prototype;
-    fn.data = function(data) {
         
     }
 

@@ -78,7 +78,7 @@
                             <td colspan="8">
                                 <div class="grid_hd wfull clearfix">
                                     <b class="fl">作业评价</b>
-                                    <a href="###" class="db fr"><i class="ticons db t2icon"></i>评价</a>
+                                    <a href="###" class="db fr" id="J_assess"><i class="ticons db tpjicon"></i>评价</a>
                                 </div>
                             </td>
                         </tr>
@@ -145,11 +145,44 @@
         <p>版权所有 © 2016宁波易步通信息服务平台  浙ICP备06015188号-3 <i class="wicons db picon"></i></p>
     </div>
 </div>
-<script src="assets/js/core/jquery.min.js"></script>  
-<script src="assets/js/components/jquery.cycle.min.js"></script>  
+
+<script type="text/template" id="temp_access">
+    <table cellpadding="0" cellspacing="0" width="100%" class="layer_grid">
+        <tr>
+            <th>流水号</th>
+            <td><input type="text" name="" id="" readonly="true" class="disable"></td>
+        </tr>
+        <tr>
+            <th>英文船名</th>
+            <td><input type="text" name="" id="" readonly="true" class="disable"></td>
+        </tr>
+        <tr>
+            <th>航次</th>
+            <td><input type="text" name="" id="" readonly="true" class="disable"></td>
+        </tr>
+        <tr>
+            <th>提单号</th>
+            <td><input type="text" name="" id="" readonly="true" class="disable"></td>
+        </tr>
+        <tr>
+            <th>服务</th>
+            <td><div class="start" id="services"></div></td>
+        </tr>
+        <tr>
+            <th>时效</th>
+            <td><div class="start" id="aging"></div></td>
+        </tr>
+        <tr>
+            <th>备注</th>
+            <td><textarea name="" id="" cols="30" rows="10"></textarea></td>
+        </tr>
+    </table>
+</script>
+
+<script src="assets/js/core/jquery.min.js"></script>
+<script src="assets/js/components/raty.js"></script>    
+<script src="assets/js/components/layer.js"></script> 
 <script src="assets/js/core/template.js"></script>
-<script>
-    
-</script>  
+<script src="assets/js/tes_layer.js"></script> 
 </body>
 </html>
