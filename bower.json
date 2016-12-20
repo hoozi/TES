@@ -1,0 +1,21 @@
+{
+  "name": "TES",
+  "homepage": "https://github.com/hoozi/TES",
+  "authors": [
+    "AngryPanda <287036406@qq.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.9.1",
+    "handlebars.js": "^4.0.6"
+  }
+}
