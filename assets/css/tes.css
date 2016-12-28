@@ -80,6 +80,10 @@ table {
 	width: 100%;
 }
 
+.table_fixed {
+	table-layout:fixed;
+}
+
 #header {
   
 }
@@ -168,7 +172,7 @@ table {
 	width:37px;
 	height:37px;
 	overflow:hidden;
-	line-height:37px;
+	line-height:inherit;
 }
 .pager_num {
 	font-weight:700;
@@ -303,6 +307,9 @@ table {
 .login_wrap .has_login .login_list ul li a {
 	display:block;
 	color:#333;
+}
+.login_wrap .has_login .selected .login_list {
+	display:block;
 }
 
 .index_silder {
@@ -690,14 +697,40 @@ table {
 .grid .grid_view .grid_td tbody tr td {
 	padding:0;
 }
-.grid .grid_pager {
+.grid_pager {
 	height:37px;
 	margin-top:10px;
 	background-color:#e8eaeb;
+	line-height:37px;
 	overflow:hidden;
 	text-align:center;
 }
 
+.contact_wrap {
+	padding-bottom:40px;
+}
+.contact_wrap h2 {
+	padding:60px 0 35px;
+	font-size:24px;
+	font-family:'Microsoft YaHei';
+	font-weight:500;
+}
+.contact_wrap ul {
+	padding-bottom:40px;
+}
+.contact_wrap ul li{
+	float:left;
+	width:360px;
+	line-height:25px;
+}
+.contact_wrap img {
+	display:block;
+	margin:0 auto;
+}
+
+
+
+/*--layer--*/
 .layui-layer-imgbar,.layui-layer-imgtit a,.layui-layer-tab .layui-layer-title span,.layui-layer-title {
 	text-overflow: ellipsis;
 	white-space: nowrap
@@ -1655,6 +1688,10 @@ html #layuicss-skinlayercss {
 	color:#b38332;
 	font-weight:bold;
 }
+.login-layer .layui-layer-title {
+	background-color:#fff;
+	border-bottom:0;
+}
 .tes-layer .layui-layer-setwin .layui-layer-close1 {
 	width:13px;
 	height:13px;
@@ -1688,6 +1725,7 @@ html #layuicss-skinlayercss {
 	border:1px solid #ff7500;
 	padding:0 30px;
 }
+
 .tes-layer .layer_grid tr th,
 .tes-layer .layer_grid tr td {
 	padding:10px;
@@ -1698,6 +1736,64 @@ html #layuicss-skinlayercss {
 	border-right:1px dotted #e2e2e2;
 	text-align:right;
 	font-weight:normal;
+}
+.tes-layer .grid_add {
+	width:930px;
+	border:1px solid #e5e5e5;
+	margin-top:10px;
+	overflow:hidden;
+}
+.tes-layer .layer_grid_add thead tr th {
+	border-bottom:5px solid #e5e5e5;
+} 
+.tes-layer .layer_grid_add thead tr th a {
+	color:#b38332;
+}
+.tes-layer .layer_grid_add thead tr th a .dicon {
+	width:10px;
+	height:10px;
+	background-position:-30px -48px;
+}
+.tes-layer .layer_grid_add tr th {
+	padding:10px 5px;
+	background-color:#edf0f7;
+	text-align:left;
+}
+.tes-layer .layer_grid_add tbody tr th {
+	padding:5px;
+	font-weight:normal;
+	text-align:center;
+}
+.tes-layer .layer_grid_add tbody tr td {
+	padding:5px;
+}
+.tes-layer .layer_grid_add tbody tr td input,
+.tes-layer .layer_grid_add tbody tr td select {
+	display:block;
+	width:100%;
+	height:23px;
+	text-indent:5px;
+	border:1px solid #c8c8c8;
+
+} 
+.tes-layer .layer_grid_add tbody .selected th,
+.tes-layer .layer_grid_add tbody .selected td {
+	background-color:#ffffcb;
+}
+.tes-layer .layer_grid_add tbody tr td,
+.tes-layer .layer_grid_add tbody tr th {
+	border-bottom:1px solid #e4e4e4;
+}
+.tes-layer .layer_grid_add tbody tr td a {
+	padding-left:10px;
+}
+.tes-layer .layer_grid_add tbody tr td a .dicon {
+	width:10px;
+	height:10px;
+	background-position:-30px -48px;
+}
+.tes-layer .layer_grid tr th .red {
+	color:red;
 }
 .tes-layer .layer_grid tr td input{
 	width:175px;
@@ -1717,6 +1813,12 @@ html #layuicss-skinlayercss {
 	padding:5px;
 	border:1px solid #d2d2d2;
 	background-color:#f7f7f7;
+}
+.tes-layer .grid_add_pager {
+	margin-top:0;
+	height:30px;
+	overflow:hidden;
+	line-height:30px;
 }
 .tes-layer .td_node h2 {
 	padding-left:80px;
@@ -1818,4 +1920,73 @@ html #layuicss-skinlayercss {
 }
 .tes-layer .recharge_area .recharge_type ul .selected .r_type {
 	border:1px solid #ff6600;
+}
+.login-layer h2,
+.login-layer ul {
+	width:300px;
+	margin:0 auto;
+}
+.login-layer h2 {
+	border-bottom:1px solid #e4e4e4;
+	position:relative;
+}
+.login-layer h2 span {
+	position:absolute;
+	width:130px;
+	left:50%;
+	bottom:-18px;
+	margin-left:-65px;
+	background-color:#fff;
+	text-align:center;
+	font-size:24px;
+	color:#9e9fa1;
+	font-family:'Microsoft YaHei';
+	font-weight:500;
+}
+.login-layer ul {
+	padding-top:30px;
+}
+.login-layer ul li {
+	padding-bottom:15px;
+}
+.login-layer ul li input {
+	border-radius:3px;
+	height:38px;
+	border:1px solid #e4e4e4;
+	line-height:38px;
+}
+.login-layer ul li .l_ipt {
+	width:290px;
+	padding-left:10px;
+}
+.login-layer ul .u_item .l_ipt {
+	background:url('imgs/u.gif') no-repeat 273px 10px;
+}
+.login-layer ul .p_item .l_ipt {
+	background:url('imgs/p.gif') no-repeat 273px 10px;
+}
+.login-layer ul .y_item .y_ipt {
+	background:url('imgs/y.gif') no-repeat 145px 10px;
+	width:180px;
+	padding-left:10px;
+}
+.login-layer ul .y_item img {
+	width:90px;
+	height:40px;
+	display:block;
+	margin-left:10px;
+}
+.login-layer ul .l_btn input {
+	width:300px;
+	height:40px;
+	border:0;
+	background-color:#ff6600;
+	line-height:40px;
+	text-align:center;
+	color:#fff;
+	font-size:14px;
+	font-weight:bold;
+}
+.login-layer .layui-layer-content {
+	padding-bottom:20px;
 }

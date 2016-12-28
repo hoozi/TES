@@ -27,10 +27,10 @@
             </ul>
             <div class="login_wrap">
                 <!--<div class="login_before">
-                    <a href="###" class="db J_login_layer">登录</a>
+                    <a href="###" class="db J_login_layer" id="J_login">登录</a>
                 </div>-->
                 <div class="has_login">
-                    <div class="J_user selected">
+                    <div class="J_user">
                         <a href="###" class="db user_hover"><i class="wicons uicon db"></i></a>
                         <div class="login_list">
                             <span class="db arrow_top"></span>
@@ -65,9 +65,30 @@
         <p>版权所有 © 2016宁波易步通信息服务平台  浙ICP备06015188号-3 <i class="wicons db picon"></i></p>
     </div>
 </div>
+
+<script type="text/template" id="temp_login">
+    <h2><span class="db">账号登录</span></h2>
+    <ul>
+        <li class="u_item">
+            <input type="text" name="" id="" class="l_ipt" placeholder="用户名">
+        </li>
+        <li class="p_item">
+            <input type="text" name="" id="" class="l_ipt" placeholder="密码">
+        </li>
+        <li class="y_item clearfix">
+            <input type="text" name="" id="" class="y_ipt fl" placeholder="验证码"><img src="" alt="" class="fl">
+        </li>
+        <li class="l_btn">
+            <input type="button" value="登录" name="" id="" class="s_btn">
+        </li>   
+    </ul>
+</script>
+
 <script src="assets/js/core/jquery.min.js"></script>  
+<script src="assets/js/tes.js"></script>
 <script src="assets/js/components/jquery.cycle.min.js"></script>  
 <script src="assets/js/core/template.js"></script>
+<script src="assets/js/tes_layer.js"></script>
 <script>
     $(".J_index_silder").cycle({
         activePagerClass: "active",
@@ -76,7 +97,6 @@
         next:             ".silder_next",
         pause:            true
     });
-    
 </script>  
 </body>
 </html>

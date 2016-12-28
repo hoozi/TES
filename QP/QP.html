@@ -1,0 +1,939 @@
+<link rel="stylesheet" type="text/css" href="QP/css/style.css">
+<link rel="stylesheet" type="text/css" href="QP/css/dec.css"/>
+<link rel="stylesheet" type="text/css" href="QP/css/qp.css"/>
+<link rel="stylesheet" type="text/css" href="QP/upload/uploadify.css" media="all" />
+<style>
+#analyzeDeclareExcel{display:inline-block;*display:inline;*zoom:1;position:relative;top:2px;margin: 0 5px;background:#5b9bc1;color:#fff;}
+#analyzeDeclareExcel .up_ico{background:none}
+.swfupload{left:0;top:0}
+</style>
+
+        <div class="page_middle main">
+            <div class="page_middle_inner">
+                <div class="business_content">
+                    <div id="content">
+        <div class="layout">
+            
+            <div class="dx_wrap clearfix clp_lr_wrap">
+                <div class="hs_info_hd clearfix clp_hd">
+                    <!-- <h2 class="td_title fl clp_title">报关单录入<span>Entry declaration</span></h2> -->
+                    <ul class="fr dec-nav">
+                        <li><a href="javascript:;" class="active">报关单信息</a></li>
+                        <li><a href="javascript:;">无纸化附件</a></li>
+                    </ul>
+                </div>
+                <div class="hs_info_bd clp_bd pubish_table">
+                    <form action="" id="form1">
+                        <div class="panel1 dec-panel">
+                            <div class="dec-btn-wrap">
+                                流水号: <input type="text" id="cqp_id" style="background:white;border:1px solid #ccc !important;width:145px;color:black"/>
+                                        <input type="button" value="查询记录" onclick="query_cqp_record()"/>
+                                        <input type="button" value="复制记录" onclick="copy_cqp_record()"/>
+                                        <input type="button" value="导出海关报文" onclick="export_cqp_record()"/>
+                                        <input type="button" value="导出模拟报文" onclick="export_cqp_record2()"/>
+                                        <input type="button" value="上传模拟报文" onclick="upload_cqp_record2()"/>
+                                        <!-- input type="button" value="解析报关单" id="analyzeDeclareExcel" name="declareExcelFile" / -->
+                                        <input type="checkbox" name="pdfFlag" id="pdfFlag" value="true" class="pdf-cx"/>生成PDF
+                            </div>
+
+                            <div id="qp_container" class="qp_container clearfix">
+                                <div class="qp_enter fl">
+                                    <div class="qp_ctrl">
+                                        <table cellspacing="0" cellpadding="0" width="650" border="0" class="qp_table table-fixed">
+                                            <colgroup>
+                                                <col width="80"/>
+                                                <col width="220" />
+                                                <col width="40"/>
+                                                <col width="60"/>
+                                                <col/>
+                                            </colgroup>
+                                            <tr>
+                                                <th>申报地海关</th>
+                                                <td>
+                                                        <input type="text" name="" id="declareLocation_v">
+                                                        <input type="hidden" name="declareMain.declareLocationCode" id="declareLocationCode">
+                                                        <input type="hidden" name="declareMain.declareLocation" id="declareLocation">
+                                                    </td>
+                                                <th>类型</th>
+                                                <td>
+                                                    <select name="declareMain.ieFlag" id="ieFlag" >
+                                                        <option value="E">出口</option>
+                                                        <option value="I">进口</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <span id="receiptDes" class="d-b" style="color:red;text-align:right"></span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div id="qp1" class="qp_enter_top hotKey_wrap">
+                                        <table cellspacing="0" cellpadding="0" width="650" border="0" class="qp_table table-fixed">
+                                            <colgroup>
+                                                <col width="70"/>
+                                                <col />
+                                                <col width="70"/>
+                                                <col/>
+                                            </colgroup>
+                                            <tr>
+                                                <th class="qp_bl qp_bt qp_bb qp_fildname">统一编号</th>
+                                                <td class="qp_bl qp_bt  qp_bb">
+                                                    <input type="text" name="declareMain.eportNo" id="eportNo" class="qp_base_ipt qp_readonly">
+                                                </td>
+                                                <th class="qp_bl qp_bt qp_bb qp_fildname">流水号</th>
+                                                <td class="qp_bl qp_bt qp_bb qp_br">
+                                                    <input type="text" name="declareMain.cloudQpId" id="cloudQpId" class="qp_base_ipt qp_readonly" readonly="readonly">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">海关编号</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.customNo" id="customNo" class="qp_base_ipt  qp_readonly">
+                                                    <input type="hidden" name="declareMain.preentryNo" id="preentryNo">
+                                                    <input type="hidden" name="declareMain.status" id="status">
+                                                </td> 
+                                                <th class="qp_bl qp_bb qp_fildname">出口口岸</th>
+                                                <td class="qp_bl qp_bb  qp_br">
+                                                        <input type="text" name="" id="exportLocation_v" class="qp_base_ipt qp_key_ipt" data-qp-focus-position="1">
+                                                        <input type="hidden" name="declareMain.exportLocationCode" id="exportLocationCode">
+                                                        <input type="hidden" name="declareMain.exportLocation" id="exportLocation">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="qp_bl qp_bt qp_bb qp_fildname">备案号</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.enrolNo" id="enrolNo" class="qp_base_ipt qp_key_ipt">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">合同号</th>
+                                                <td class="qp_bl qp_bb  qp_br">
+                                                    <input type="text" name="declareMain.contractNo" id="contractNo" class="qp_base_ipt qp_key_ipt">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">出口日期</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.exportDate" id="exportDate" class="qp_base_ipt qp_readonly" onfocus="WdatePicker({'readOnly':true,dateFmt:'yyyyMMdd'})">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">申报日期</th>
+                                                <td class="qp_bl qp_bb  qp_br">
+                                                    <input type="text" name="declareMain.declareDate" id="declareDate" class="qp_base_ipt qp_readonly" onfocus="WdatePicker({'readOnly':true,dateFmt:'yyyyMMdd'})">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table cellspacing="0" cellpadding="0" width="650" border="0" class="qp_table table-fixed">
+                                            <colgroup>
+                                                <col width="70"/>
+                                                <col width="100" />
+                                                <col width="170" />
+                                                <col class="qp_col_whack1"/>
+                                                <col width="70"/>
+                                                <col width="20"/>
+                                                <col/>
+                                            </colgroup>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">经营单位</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.businessCompanyCode" id="businessCompanyCode" class="qp_base_ipt qp_key_ipt">
+                                                </td>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.businessCompany" id="businessCompany" class="qp_base_ipt qp_key_ipt" opendialog="company-record-dialog">
+                                                </td>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="" class="qp_base_ipt qp_readonly">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname" colspan="2" >运输方式</th>
+                                                <td class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="" id="transportMode_v" class="qp_base_ipt qp_key_ipt">
+                                                    <input type="hidden" name="declareMain.transportModeCode" id="transportModeCode">
+                                                    <input type="hidden" name="declareMain.transportMode" id="transportMode">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">发货单位</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.productionCompanyCode" id="productionCompanyCode" class="qp_base_ipt qp_key_ipt" openDialog="company-record-dialog-2">
+                                                </td>
+                                                <td class="qp_bl qp_bb" colspan="2">
+                                                    <input type="text" name="declareMain.productionCompany" id="productionCompany" class="qp_base_ipt qp_key_ipt">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname" colspan="2">运输工具名称</th>
+                                                <td class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="declareMain.transportName" id="transportName" class="qp_base_ipt qp_key_ipt" onkeyup="Convert(this)">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">申请单位</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.declareCompanyCode" id="declareCompanyCode" class="qp_base_ipt qp_key_ipt">
+                                                </td>
+                                                <td class="qp_bl qp_bb" colspan="2">
+                                                    <input type="text" name="declareMain.declareCompany" id="declareCompany" class="qp_base_ipt qp_key_ipt">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">航次号</th>
+                                                <td colspan="2" class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="declareMain.transportId" id="transportId" class="qp_base_ipt qp_key_ipt" onkeyup="Convert(this)">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table cellspacing="0" cellpadding="0" width="650" border="0" class="qp_table table-fixed">
+                                            <colgroup>
+                                                <col width="70" />
+                                                <col width="20" />
+                                                <col width="100" />
+                                                <col width="60" />
+                                                <col width="84" />
+                                                <col class="qp_col_whack2" />
+                                                <col width="70" />
+                                                <col width="10" />
+                                                <col width="60" />
+                                                <col/>
+                                            </colgroup>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">提运单号</th>
+                                                <td colspan="2" class="qp_bl qp_bb">
+                                                    <div class="ipt_group1"><input type="text" name="declareMain.billNo" id="billNo" class="qp_base_ipt qp_key_ipt" onkeyup="Convert(this)"><input type="button" value="查询" class="s_btn" id="getDataFromCLPByBillNo_btn" onclick="getDataFromCLPByBillNo()"></div>
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">贸易方式</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="tradeMode_v" class="qp_base_ipt qp_key_ipt">
+                                                    <input type="hidden" name="declareMain.tradeModeCode" id="tradeModeCode">
+                                                    <input type="hidden" name="declareMain.tradeMode" id="tradeMode">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">征免性质</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="cutMode_v" class="qp_base_ipt qp_key_ipt">
+                                                    <input type="hidden" name="declareMain.cutModeCode" id="cutModeCode">
+                                                    <input type="hidden" name="declareMain.cutMode" id="cutMode">
+                                                </td>
+                                                <th colspan="2" class="qp_bl qp_bb qp_fildname">结汇方式</th>
+                                                <td class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="" id="payMode_v" class="qp_base_ipt qp_readonly">
+                                                    <input type="hidden" name="declareMain.payModeCode" id="payModeCode">
+                                                    <input type="hidden" name="declareMain.payMode" id="payMode">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">纳税单位</th>
+                                                <td colspan="2" class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.taxCorporationType" id="taxCorporationType" class="qp_base_ipt qp_key_ipt">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">许可证号</th>
+                                                <td colspan="6" class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="declareMain.licenseNo" id="licenseNo" class="qp_base_ipt qp_key_ipt">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="2" class="qp_bl qp_bb qp_fildname">运抵国(地区)</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="arrivedCountry_v" class="qp_base_ipt qp_key_ipt">
+                                                    <input type="hidden" name="declareMain.arrivedCountry" id="arrivedCountry">
+                                                    <input type="hidden" name="declareMain.arrivedCountryCode" id="arrivedCountryCode">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">指运港</th>
+                                                <td colspan="2" class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="arrivedPort_v" class="qp_base_ipt qp_key_ipt">
+                                                    <input type="hidden" name="declareMain.arrivedPortCode" id="arrivedPortCode">
+                                                    <input type="hidden" name="declareMain.arrivedPort" id="arrivedPort">
+                                                </td>
+                                                <th colspan="2" class="qp_bl qp_bb qp_fildname">境内货源地</th>
+                                                <td colspan="2" class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="" id="goodsSource_v" class="qp_base_ipt qp_key_ipt" opendialog="search-arrivePort-dialog">
+                                                    <input type="hidden" name="declareMain.goodsSourceCode" id="goodsSourceCode">
+                                                    <input type="hidden" name="declareMain.goodsSource" id="goodsSource">
+                                                </td>
+                                            </tr>
+                                            <tr>
+												<!-- th class="qp_bl qp_bb qp_fildname">批准文号</th>
+												<td colspan="5" class="qp_bl qp_bb">
+													<input type="text" name="declareMain.approvalNo" id="approvalNo" class="qp_base_ipt qp_key_ipt">
+												</td -->												
+												<th class="qp_bl qp_bb qp_fildname">贸易国</th>
+												<td colspan="5" class="qp_bl qp_bb">
+													<input type="text" name="" id="tradingCountry_v" class="qp_base_ipt qp_key_ipt">
+													<input type="hidden" name="declareMain.tradingCountry" id="tradingCountry">
+													<input type="hidden" name="declareMain.tradingCountryCode" id="tradingCountryCode">
+												</td>
+                                                <th colspan="2" class="qp_bl qp_bb qp_fildname">成交方式</th>
+                                                <td colspan="2" class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="" id="transactionMode_v" class="qp_base_ipt qp_key_ipt" openDialog="transactionMode">
+                                                    <input type="hidden" name="declareMain.transactionModeCode" id="transactionModeCode">
+                                                    <input type="hidden" name="declareMain.transactionMode" id="transactionMode">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table cellspacing="0" cellpadding="0" width="650" border="0" class="qp_table table-fixed">
+                                            <colgroup>
+                                                <col width="40"/>
+                                                <col width="50" />
+                                                <col width="80"/>
+                                                <col/>
+                                                <col width="40"/>
+                                                <col width="50" />
+                                                <col width="80"/>
+                                                <col/>
+                                                <col width="40"/>
+                                                <col width="50" />
+                                                <col width="80"/>
+                                                <col/>
+                                            </colgroup>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">运费</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="freightMark_v" class="qp_base_ipt qp_key_ipt" >
+                                                    <input type="hidden" name="declareMain.freightMark" id="freightMark">
+                                                    <input type="hidden" name="declareMain.freightMarkChn" id="freightMarkChn">
+                                                </td>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.freightRate" id="freightRate" class="qp_base_ipt qp_key_ipt" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+                                                </td>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="freightCurrency_v" class="qp_base_ipt qp_key_ipt">
+                                                    <input type="hidden" name="declareMain.freightCurrency" id="freightCurrency">
+                                                    <input type="hidden" name="declareMain.freightCurrencyChn" id="freightCurrencyChn">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">保费</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="insuranceMark_v" class="qp_base_ipt qp_key_ipt">
+                                                    <input type="hidden" name="declareMain.insuranceMark" id="insuranceMark">
+                                                    <input type="hidden" name="declareMain.insuranceMarkChn" id="insuranceMarkChn">
+                                                </td>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.insuranceRate" id="insuranceRate" class="qp_base_ipt qp_key_ipt" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+                                                </td>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="insuranceCurrency_v" class="qp_base_ipt qp_key_ipt">
+                                                    <input type="hidden" name="declareMain.insuranceCurrency" id="insuranceCurrency">
+                                                    <input type="hidden" name="declareMain.insuranceCurrencyChn" id="insuranceCurrencyChn">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">杂费</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="extrasMark_v" class="qp_base_ipt qp_key_ipt">
+                                                    <input type="hidden" name="declareMain.extrasMark" id="extrasMark">
+                                                    <input type="hidden" name="declareMain.extrasMarkChn" id="extrasMarkChn">
+                                                </td>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.extrasRate" id="extrasRate" class="qp_base_ipt qp_key_ipt" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+                                                </td>
+                                                <td class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="" id="extrasCurrency_v" class="qp_base_ipt qp_key_ipt">
+                                                    <input type="hidden" name="declareMain.extrasCurrency" id="extrasCurrency">
+                                                    <input type="hidden" name="declareMain.extrasCurrencyChn" id="extrasCurrencyChn">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table cellspacing="0" cellpadding="0" width="650" border="0" class="qp_table table-fixed">
+                                            <colgroup>
+                                                <col class="qp_col_whack4" />
+                                                <col width="30"/>
+                                                <col width="50" />
+                                                <col width="80" />
+                                                <col width="100" />
+                                                <col width="70" />
+                                                <col width="100"/>
+                                                <col width="70"/>
+                                                <col/>
+                                            </colgroup>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">件数</th>
+                                                <td colspan="2" class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.packagesNum" id="packagesNum" class="qp_base_ipt qp_key_ipt" onkeyup="value=value.replace(/[^\d\.]/g,'')"> 
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">包装种类</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="packingType_v" class="qp_base_ipt qp_key_ipt">
+                                                    <input type="hidden" name="declareMain.packingTypeCode" id="packingTypeCode">
+                                                    <input type="hidden" name="declareMain.packingType" id="packingType">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">毛重(KG)</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="declareMain.grossWeight" id="grossWeight" class="qp_base_ipt qp_key_ipt" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">净重(KG)</th>
+                                                <td class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="declareMain.netWeight" id="netWeight" class="qp_base_ipt qp_key_ipt" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!-- <table cellspacing="0" cellpadding="0" width="650" border="0" class="qp_table table-fixed">
+                                            <colgroup>
+                                                <col width="40"/>
+                                                <col width="30"/>
+                                                <col width="50" />
+                                                <col class="qp_col_whack3" />
+                                                <col width="100" />
+                                                <col width="70" />
+                                                <col width="100"/>
+                                                <col width="70"/>
+                                                <col/>
+                                            </colgroup>
+                                            <tr>
+                                                <th colspan="2" class="qp_bl qp_bb qp_fildname">集装箱号</th>
+                                                <td colspan="3" class="qp_bl qp_bb">
+                                                    <input type="text" name="" id="" class="qp_base_ipt qp_readonly">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">随附单证</th>
+                                                <td colspan="3" class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="" id="" class="qp_base_ipt qp_readonly">
+                                                </td>
+                                            </tr>
+                                        </table> -->
+                                        <table cellspacing="0" cellpadding="0" width="650" border="0" class="qp_table table-fixed">
+                                            <colgroup>
+                                                <col width="80"/>
+                                                <col width="120" />
+                                                <col width="50" />
+                                                <col width="260" />
+                                                <col/>
+                                            </colgroup>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">报关单类型</th>
+                                                <td class="qp_bl qp_bb" valign="top">
+                                                    <input type="text" name="" id="entryType_v" class="qp_base_ipt qp_key_ipt"  data-jump="containerNo">
+                                                    <input type="hidden" name="declareMain.entryTypeCode" id="entryTypeCode">
+                                                    <input type="hidden" name="declareMain.entryType" id="entryType">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">备注</th>
+                                                <td class="qp_bl qp_bb" valign="top">
+                                                    <input type="text" name="declareMain.remark" id="remark" class="qp_base_ipt qp_key_ipt">
+                                                </td>
+                                                <td class="qp_bl qp_bb qp_br">&nbsp;&nbsp;<input type="checkbox" name="declareMain.vouchFlag" value="Y" id="vouchFlag" class="qp_ck">担保验放</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="qp_enter_add_table">
+                                        <div id="qp2_table_view" class="tableView">
+                                            <div class="table_options">
+                                                <div class="table_options_item" fieldName="goodsSeq" headerAlign="center" colWidth=50>序号</div>
+                                                <div class="table_options_item" fieldName="hsCode" headerAlign="center" colWidth=65>商品编号</div>
+                                                <div class="table_options_item" fieldName="enrolNo" headerAlign="center" colWidth=65>备案序号</div>
+                                                <div class="table_options_item" fieldName="goodsName" headerAlign="center" colWidth=65>商品名称</div>
+                                                <div class="table_options_item" fieldName="arrivalCountry" headerAlign="center" colWidth=65>目的地</div>
+                                                <div class="table_options_item" fieldName="quantity" headerAlign="center" colWidth=65>成交数量</div>
+                                                <div class="table_options_item" fieldName="quantityUnit" headerAlign="center" colWidth=65>成交单位</div>
+                                                <div class="table_options_item" fieldName="unitPrice" headerAlign="center" colWidth=65>成交单价</div>
+                                                <div class="table_options_item" fieldName="sum" headerAlign="center" colWidth=50>金额</div>
+                                                <div class="table_options_item" fieldName="currency" headerAlign="center" colWidth=50>币值</div>
+                                                <div class="table_options_item" fieldName="dutyMode" headerAlign="center" colWidth=50>征免</div>
+                                                <div class="table_options_item" fieldName="extraNo" headerAlign="center" colWidth=0></div>
+                                                <div class="table_options_item" fieldName="goodsVersion" headerAlign="center" colWidth=0></div>
+                                                <div class="table_options_item" fieldName="goodsNo" headerAlign="center" colWidth=0></div>
+                                                <div class="table_options_item" fieldName="use" headerAlign="center" colWidth=0></div>
+                                                <div class="table_options_item" fieldName="model" headerAlign="center" colWidth=0></div>
+                                                <div class="table_options_item" fieldName="firstQuantity" headerAlign="center" colWidth=0></div>
+                                                <div class="table_options_item" fieldName="firstUnit" headerAlign="center" colWidth=0></div>
+                                                <div class="table_options_item" fieldName="secondQuantity" headerAlign="center" colWidth=0></div>
+                                                <div class="table_options_item" fieldName="secondUnit" headerAlign="center" colWidth=0></div>
+                                                <div class="table_options_item" fieldName="processingCharges" headerAlign="center" colWidth=0></div>
+                                                <div class="table_options_item" fieldName="declareGoodsId" headerAlign="center" colWidth=0></div>
+                                            </div>
+                                        </div>
+                                        <div class="total" id="price_total"><b>合计金额:<span class="t_price">0.00</span>元</b></div>
+                                    </div>
+                                    <div id="qp2" class="qp_enter_bottom hotKey_wrap">
+                                        <table cellspacing="0" cellpadding="0" width="650" border="0" class="qp_table table-fixed">
+                                            <colgroup>
+                                                <col width="70"/>
+                                                <col width="60" />
+                                                <col width="60" />
+                                                <col width="70" />
+                                                <col width="70" />
+                                                <col width="70" />
+                                                <col width="80" />
+                                                <col/>
+                                                <col/>
+                                            </colgroup>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">商品序号</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="goodsSeq" id="goodsSeq_goods" class="qp_base_ipt qp_readonly e_ipt1" readonly="readonly">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">备案序号</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="enrolNo" id="enrolNo_goods" class="qp_base_ipt qp_readonly e_ipt1">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">商品编号</th>
+                                                <td class="qp_bl qp_bb" colspan="2">
+                                                    <input type="text" name="hsCode" id="hsCode_goods" class="qp_base_ipt qp_key_ipt e_ipt1">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">附加编号</th>
+                                                <td class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="extraNo" id="extraNo_goods" class="qp_base_ipt qp_readonly e_ipt1">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">商品名称</th>
+                                                <td colspan="4" class="qp_bl qp_bb">
+                                                    <input type="text" name="goodsName" id="goodsName_goods" class="qp_base_ipt qp_key_ipt e_ipt1" opendialog="search-dialog" >
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">规格型号</th>
+                                                <td colspan="3" class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="model" id="model_goods" class="qp_base_ipt qp_key_ipt e_ipt1" data-jump-enter="hsCode_goods">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table cellspacing="0" cellpadding="0" width="650" border="0" class="qp_table table-fixed">
+                                            <colgroup>
+                                                <col class="qp_col_whack5"/>
+                                                <col width="70"/>
+                                                <col width="60"/>
+                                                <col width="80"/>
+                                                <col width="60"/>
+                                                <col width="70"/>
+                                                <col width="60"/>
+                                                <col width="50"/>
+                                                <col width="30"/>
+                                                <col width="30"/>
+                                                <col width="53"/>
+                                            </colgroup>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">成交数量</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="quantity" id="quantity_goods" class="qp_base_ipt qp_key_ipt e_ipt1" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">成交单位</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="quantityUnit" id="quantityUnit_goods" class="qp_base_ipt qp_key_ipt e_ipt1">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">成交单价</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="unitPrice" id="unitPrice_goods" class="qp_base_ipt qp_key_ipt e_ipt1" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">成交总价</th>
+                                                <td class="qp_bl qp_bb" colspan="2">
+                                                    <input type="text" name="sum" id="sum_goods" class="qp_base_ipt qp_key_ipt e_ipt1" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">币值</th>
+                                                <td class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="currency" id="currency_goods" class="qp_base_ipt qp_key_ipt e_ipt1">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">法定数量</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="firstQuantity" id="firstQuantity_goods" class="qp_base_ipt qp_key_ipt e_ipt1" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">法定单位</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="firstUnit" id="firstUnit_goods" class="qp_base_ipt qp_readonly e_ipt1">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">版 本 号</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="goodsVersion" id="goodsVersion_goods" class="qp_base_ipt qp_key_ipt e_ipt1">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">货　　号</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="goodsNo" id="goodsNo_goods" class="qp_base_ipt qp_key_ipt e_ipt1">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname" colspan="2">生产厂家</th>
+                                                <td class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="use" id="use_goods" class="qp_base_ipt qp_key_ipt e_ipt1">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="qp_bl qp_bb qp_fildname">第二数量</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="secondQuantity" id="secondQuantity_goods" class="qp_base_ipt qp_key_ipt e_ipt1" onkeyup="value=value.replace(/[^\d\.]/g,'')">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">第二单位</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="secondUnit" id="secondUnit_goods" class="qp_base_ipt qp_readonly e_ipt1">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">目 的 地</th>
+                                                <td class="qp_bl qp_bb">
+                                                    <input type="text" name="arrivalCountry" id="arrivalCountry_goods" class="qp_base_ipt qp_key_ipt e_ipt1">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname">征　　免</th>
+                                                <td class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="dutyMode" id="dutyMode_goods" class="qp_base_ipt qp_key_ipt e_ipt1">
+                                                </td>
+                                                <th class="qp_bl qp_bb qp_fildname" colspan="2">工 缴 费</th>
+                                                <td class="qp_bl qp_bb qp_br">
+                                                    <input type="text" name="processingCharges" id="processingCharges_goods" class="qp_base_ipt qp_key_ipt e_ipt1">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="qp_add_table fl">
+                                    <div class="qp_add_table_container add_table1">
+                                        <div class="ctrl_table">
+                                            <div id="qp3_table_view" class="tableView">
+                                                <div class="table_options">
+                                                    <div class="table_options_item" fieldName="ctn_no" headerAlign="center" colWidth=50>序号</div>
+                                                    <div class="table_options_item" fieldName="containerNo" headerAlign="center" colWidth=80>集装箱号</div>
+                                                    <div class="table_options_item" fieldName="containerSize" headerAlign="center" colWidth=80>箱型规格</div>
+                                                    <div class="table_options_item" fieldName="containerWeight" headerAlign="center" colWidth=70>自重(KG)</div>
+                                                    <div class="table_options_item" fieldName="declareCtnId" colWidth=0></div>
+                                                </div>
+                                            </div>
+                                            <div class="total" id="ctn_total"><b>合计：0 TEU</b></div>
+                                        </div>
+                                        <div id="qp3" class="hotKey_wrap">
+                                            <table width="270" cellspacing="0" cellpadding="0" border="0" class="qp_table table-fixed add_ipt_table">
+                                                <colgroup>
+                                                    <col width="100"/>
+                                                    <col/>
+                                                </colgroup>
+                                                <tr>
+                                                    <th>序号</th>
+                                                    <td><input type="text" name="ctn_no" class="qp_ctrl_ipt qp_readonly e_ipt2" readonly="readonly"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>集装箱号</th>
+                                                    <td><input type="text" name="containerNo" class="qp_ctrl_ipt qp_key_ipt e_ipt2" data-jump="goodsName_goods" id="containerNo"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>集装箱规格</th>
+                                                    <td><input type="text" name="containerSize" id="containerSize" class="qp_ctrl_ipt qp_key_ipt e_ipt2" onkeyup="Convert(this)"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>集装箱自重(KG)</th>
+                                                    <td><input type="text" name="containerWeight" id="containerWeight" class="qp_ctrl_ipt qp_key_ipt e_ipt2"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="qp_add_table_container add_table2">
+                                        <div id="qp4_table_view" class="ctrl_table tableView ">
+                                            <div class="table_options">
+                                                <div class="table_options_item" fieldName="att_no" headerAlign="center" colWidth=50>序号</div>
+                                                <div class="table_options_item" fieldName="docAttachedCode" headerAlign="center" colWidth=115>随附单证代码</div>
+                                                <div class="table_options_item" fieldName="docAttachedNo" headerAlign="center" colWidth=115>随附单证编号</div>
+                                                <div class="table_options_item" fieldName="declareDocId" headerAlign="center" colWidth=0></div>                                             
+                                            </div>
+                                        </div>
+                                        <div id="qp4" class="hotKey_wrap">
+                                            <table width="270" cellspacing="0" cellpadding="0" border="0" class="qp_table table-fixed add_ipt_table">
+                                                <colgroup>
+                                                    <col width="100"/>
+                                                    <col/>
+                                                </colgroup>
+                                                <tr>
+                                                    <th>序号</th>
+                                                    <td><input type="text" name="att_no" class="qp_ctrl_ipt qp_readonly e_ipt3" readonly="readonly"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>随附单证代码</th>
+                                                    <td><input type="text" name="docAttachedCode" id="docAttachedCode" class="qp_ctrl_ipt qp_key_ipt e_ipt3" data-jump="containerNo"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>随附单证编号</th>
+                                                    <td><input type="text" name="docAttachedNo" id="docAttachedNo" class="qp_ctrl_ipt qp_key_ipt e_ipt3"></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div id="qp5" class="qp_add_table_container add_table3 hotKey_wrap">
+                                        <table width="270" cellspacing="0" cellpadding="0" border="0" class="qp_table table-fixed add_ipt_table">
+                                            <colgroup>
+                                                <col width="100"/>
+                                                <col/>
+                                            </colgroup>
+                                            <tr>
+                                                <th>关联报关单</th>
+                                                <td><input type="text" name="declareMain.relativeEntryNo" id="relativeEntryNo" class="qp_ctrl_ipt qp_key_ipt" data-jump="docAttachedCode"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>关联备案</th>
+                                                <td><input type="text" name="declareMain.relativeEnrolNo" id="relativeEnrolNo" class="qp_ctrl_ipt qp_key_ipt"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>监管仓号</th>
+                                                <td><input type="text" name="declareMain.warehouseNo" id="warehouseNo" class="qp_ctrl_ipt qp_key_ipt"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>货场代码</th>
+                                                <td><input type="text" name="declareMain.cyNo" id="cyNo" class="qp_ctrl_ipt qp_key_ipt"></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!-- <div id="qp6" class="qp_add_table_container add_table4 hotKey_wrap">
+                                        <table width="270" cellspacing="0" cellpadding="0" border="0" class="qp_table table-fixed add_ipt_table">
+                                            <colgroup>
+                                                <col width="100"/>
+                                                <col/>
+                                            </colgroup>
+                                            <tr>
+                                                <th>报关员</th>
+                                                <td><input type="text" name="" id="" class="qp_ctrl_ipt qp_key_ipt" data-qp-focus-position="0"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>联系方式</th>
+                                                <td><input type="text" name="" id="" class="qp_ctrl_ipt qp_key_ipt" data-qp-focus-position="1"></td>
+                                            </tr>
+                                        </table>
+                                    </div> -->
+                                    
+                                </div>
+                                
+                            </div>
+                            <div class="dec-btn-wrap">
+                                <input type="button" value="保存" onclick="add_declare()">
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        </form>
+                        <div class="panel3 dec-panel" id="panel3">
+                            <div class="view clearfix">
+                                <div class="view-sidebar fl">
+                                    <div class="v-s-hd clearfix">
+                                        <dl class="clearfix">
+                                            <dt class="v-w1">NO.</dt>
+                                            <dd class="v-w2">附件类型</dd>
+                                            <dd class="v-w3">操作</dd>
+                                            <dd class="v-w4">预览</dd>
+                                        </dl>
+                                    </div>
+                                    
+                                    <div class="v-s-bd clearfix">
+                                        <dl class="clearfix">
+                                            <dt class="v-w1">1.</dt>
+                                            <dd class="v-w2" title="发票">发票</dd>
+                                            <dd class="v-w3"><input id="edocFile_1" class="dec" type="file" name="edocFile"></dd>
+                                            <dd class="v-w4"><a href="javascript:;" onclick="previewEdocUrl('00000001')">预览</a></dd>
+                                        </dl>
+                                        <dl class="clearfix">
+                                            <dt class="v-w1">2.</dt>
+                                            <dd class="v-w2" title="装箱单">装箱单</dd>
+                                            <dd class="v-w3"><input id="edocFile_2" class="dec" type="file" name="edocFile"></dd>
+                                            <dd class="v-w4"><a href="javascript:;" onclick="previewEdocUrl('00000002')">预览</a></dd>
+                                        </dl>
+                                        <dl class="clearfix">
+                                            <dt class="v-w1">3.</dt>
+                                            <dd class="v-w2"  title="提运单">提运单</dd>
+                                            <dd class="v-w3"><input id="edocFile_3" class="dec" type="file" name="edocFile"></dd>
+                                            <dd class="v-w4"><a href="javascript:;" onclick="previewEdocUrl('00000003')">预览</a></dd>
+                                        </dl>
+                                        <dl class="clearfix">
+                                            <dt class="v-w1">4.</dt>
+                                            <dd class="v-w2"  title="合同">合同</dd>
+                                            <dd class="v-w3"><input id="edocFile_4" class="dec" type="file" name="edocFile"></dd>
+                                            <dd class="v-w4"><a href="javascript:;" onclick="previewEdocUrl('00000004')">预览</a></dd>
+                                        </dl>
+                                        <dl class="clearfix">
+                                            <dt class="v-w1">5.</dt>
+                                            <dd class="v-w2"  title="其它1">其它1</dd>
+                                            <dd class="v-w3"><input id="edocFile_5" class="dec" type="file" name="edocFile"></dd>
+                                            <dd class="v-w4">预览</dd>
+                                        </dl>
+                                        <dl class="clearfix">
+                                            <dt class="v-w1">6.</dt>
+                                            <dd class="v-w2"  title="其它2">其它2</dd>
+                                            <dd class="v-w3"><input id="edocFile_6" class="dec" type="file" name="edocFile"></dd>
+                                            <dd class="v-w4">预览</dd>
+                                        </dl>
+                                        <dl class="clearfix">
+                                            <dt class="v-w1">7.</dt>
+                                            <dd class="v-w2"  title="其它3">其它3</dd>
+                                            <dd class="v-w3"><input id="edocFile_7" class="dec" type="file" name="edocFile"></dd>
+                                            <dd class="v-w4">预览</dd>
+                                        </dl>
+                                        <dl class="clearfix">
+                                            <dt class="v-w1">8.</dt>
+                                            <dd class="v-w2"  title="纸质代理报关委托协议扫描件">纸质代理报关委托..</dd>
+                                            <dd class="v-w3"><input id="edocFile_8" class="dec" type="file" name="edocFile"></dd>
+                                            <dd class="v-w4">预览</dd>
+                                        </dl>
+                                        <dl class="clearfix">
+                                            <dt class="v-w1">9.</dt>
+                                            <dd class="v-w6 clearfix"><input id="edocFile_9" edocType="10000001" class="dec" type="text" value="电子代理报关委托编号" onfocus="if(this.value=='电子代理报关委托编号'){this.value='';}"  onblur="if(this.value==''){this.value='电子代理报关委托编号';}"><input type="button" value="保存" class="dec-save" onclick="edocIdSave()"/></dd>
+                                        </dl>
+                                        <dl class="clearfix">
+                                            <dt class="v-w1">10.</dt>
+                                            <dd class="v-w2"  title="减免税货物税款担保证明">减免税货物税款担..</dd>
+                                            <dd class="v-w3"><input id="edocFile_10" class="dec" type="file" name="edocFile"></dd>
+                                            <dd class="v-w4">预览</dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="view-content fr">
+                                    <div class="v-c-hd">预览区</div>
+                                    <div class="v-c-bd" id="previewEdoc"></div> 
+                                </div>
+                            </div>
+                            <div class="dec-btn-wrap">
+                                <input type="button" value="上传"/>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+        
+		        <div id="result-dialog" class="u_dialog dec-dialog result-dialog" title="申报要素">
+			<div class="ship_search search-dialog">
+				<dl>
+					<dt class="bor_r bf6">海关编号</dt>
+					<dd class="res-text" id="result-dialog_hscode"></dd>
+				</dl>
+			</div>
+			<h2>规格型号</h2>
+			<table width="100%" cellpadding="0" cellspacing="0" id="result-dialog-table">
+				<tbody>
+					<tr>
+						<th>1.品名</th>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="bt-center">
+				<input type="button" value="确定" onclick="result_dialog_yes()"/>
+				<input type="button" value="取消" onclick="result_dialog_no()"/>
+			</div>
+		</div>
+		<div id="search-dialog" class="u_dialog dec-dialog" title="查询商品">
+			<div class="ship_search search-dialog hscode_search">
+				<dl>
+					<dt class="bor_r bf6">商品编号或名称</dt>
+					<dd>
+						<input type="text" name="" id="hscode_search_content" />
+					</dd>
+					<dd class="s_s_sub">
+						<input type="button" value="查 询" onclick="hscode_search()">
+					</dd>
+					<dd class="s_s_sub">
+						<input type="button" value="确定" onclick="hscode_confirm()">
+					</dd>
+				</dl>
+			</div>
+			<h2>检索结果</h2>
+			<div class="scroll-table">
+				<table width="100%" cellpadding="0" cellspacing="0" id="hscode_result_table">
+					<thead>
+						<tr>
+							<td width="12%">商品编号</td>
+							<td width="66%">海关商品名称</td>
+							<td width="11%">法定单位一</td>
+							<td width="11%">法定单位二</td>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- <tr class="db">
+							<td>123123BG</td>
+							<td>阿迪达斯</td>
+							<td>千克</td>
+							<td>千克</td>
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+			<div class="clearfix" >
+				<div class="pages clearfix fr" id="pages_hscode_result_table"></div>
+			</div>
+		</div>
+		<div id="search-arrivePort-dialog" class="u_dialog dec-dialog" title="查询指运港">
+			<div class="ship_search search-dialog hscode_search">
+				<dl>
+					<dt class="bor_r bf6" style="width:70px">港口名称</dt>
+					<dd>
+						<input type="text" name="" id="arrivePort_search_content" />
+					</dd>
+					<dd class="s_s_sub">
+						<input type="button" value="查 询" onclick="arrivePort_search()">
+					</dd>
+				</dl>
+			</div>
+			<h2>检索结果</h2>
+			<div class="scroll-table">
+				<table width="100%" cellpadding="0" cellspacing="0" id="arrivePort_result_table">
+					<thead>
+						<tr>
+							<td width="20%">港口编号</td>
+							<td width="80%">港口名称</td>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- <tr class="db">
+							<td>123123BG</td>
+							<td>阿迪达斯</td>
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+			<div class="clearfix" >
+				<div class="pages clearfix fr" id="pages_arrivePort_result_table"></div>
+			</div>
+		</div>
+		
+		<div id="company-record-dialog" class="u_dialog dec-dialog" title="查询单位记录">
+			<div class="ship_search search-dialog hscode_search">
+				<dl>
+					<dt class="bor_r bf6" style="width:70px">单位名称</dt>
+					<dd>
+						<input type="text" name="" id="companyRecord_search_content" />
+					</dd>
+					<dd class="s_s_sub">
+						<input type="button" value="查 询" onclick="companyRecord_search(1)"/>
+						<input type="button" value="新增" onclick="companyRecord_add()"/>
+						<input type="hidden" id="companyRecord_type"/>
+					</dd>
+				</dl>
+			</div>
+			<h2>检索结果</h2>
+			<div class="scroll-table">
+				<table width="100%" cellpadding="0" cellspacing="0" id="companyRecord_result_table">
+					<thead>
+						<tr>
+							<td width="40%">经营单位代码</td>
+							<td width="40%">经营单位中文</td>
+							<td width="20%">操作</td>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- <tr class="db">
+							<td>123123BG</td>
+							<td>阿迪达斯</td>
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+			<div class="clearfix" >
+				<div class="pages clearfix fr" id="pages_companyRecord_result_table"></div>
+			</div>
+		</div>
+		<div id="add-companyRecord-dialog" class="u_dialog dec-dialog result-dialog" title="新增单位记录">
+			<h2>请填写以下内容</h2>
+			<table width="100%" cellpadding="0" cellspacing="0" id="add-companyRecord-dialog-table">
+				<tbody>
+					<tr>
+						<th>经营单位代码</th>
+						<td><input type="text" id="add_business_company_code"/></td>
+					</tr>
+					<tr>
+						<th>经营单位中文名</th>
+						<td><input type="text" id="add_business_company_chn"/></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="bt-center">
+				<input type="button" value="确定" onclick="add_companyRecord_yes()"/>
+				<input type="button" value="取消" onclick="add_companyRecord_no()"/>
+			</div>
+		</div>
+        
+<!--commons js -->
+<script type="text/javascript" src="QP/js/template.min.js"></script>
+<script type="text/javascript" src="QP/js/jquery-ui-1.10.2.min.js"></script>
+<script type="text/javascript" src="QP/js/WdatePicker.js"></script>
+<script type="text/javascript" src="QP/js/ajaxpage.js"></script>
+<script type="text/javascript" src="QP/upload/jquery.uploadify.min.js"></script>
+<script type="text/javascript" src="QP/js/tableView.js"></script>
+<script type="text/javascript" src="QP/js/qp.js"></script>   
+<script type="text/javascript" src="QP/js/declare.dialog.js"></script>
+<script type="text/javascript" src="QP/js/declare.js"></script>
+<script>    
+function Convert(obj) {
+    if (obj.value != obj.value.toUpperCase()){
+        obj.value = obj.value.toUpperCase();
+    }
+}
+</script>
+<!--end commons js-->

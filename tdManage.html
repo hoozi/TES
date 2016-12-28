@@ -328,9 +328,134 @@
         </tr>
     </table>
 </script>
+ 
+<script type="text/template" id="temp_upload">
+    <table cellpadding="0" cellspacing="0" width="100%" class="layer_grid">
+        <tr>
+            <th><span class="red">*</span>船公司代码</th>
+            <td><input type="text" name="" id=""></td>
+            <th>船公司名称</th>
+            <td><input type="text" name="" id=""></td>
+            <th><span class="red">*</span>运输工具名称</th>
+            <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+            <th><span class="red">*</span>航次</th>
+            <td><input type="text" name="" id=""></td>
+            <th><span class="red">*</span>提单号</th>
+            <td><input type="text" name="" id=""></td>
+            <th><span class="red">*</span>目的港</th>
+            <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+            <th>箱型</th>
+            <td><input type="text" name="" id=""></td>
+            <th>尺寸</th>
+            <td><input type="text" name="" id=""></td>
+            <th>数量</th>
+            <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+            <th>提箱堆场</th>
+            <td><input type="text" name="" id=""></td>
+            <th>装箱地点</th>
+            <td><input type="text" name="" id=""></td>
+            <th><span class="red">*</span>合同号</th>
+            <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+            <th><span class="red">*</span>件数</th>
+            <td><input type="text" name="" id=""></td>
+            <th><span class="red">*</span>毛重</th>
+            <td><input type="text" name="" id=""></td>
+            <th><span class="red">*</span>体积</th>
+            <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+            <th>发票号</th>
+            <td><input type="text" name="" id=""></td>
+            <th>收货人</th>
+            <td><input type="text" name="" id=""></td>
+            <th>发货人</th>
+            <td><input type="text" name="" id=""></td>
+        </tr>
+        <tr>
+            <th>备注</th>
+            <td colspan="5">
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </td>
+        </tr>
+    </table>
+    <div class="grid_add">
+        <table cellpadding="0" cellspacing="0" width="930" class="table_fixed layer_grid_add">
+            <colgroup width="35"></colgroup>
+            <colgroup width="155"></colgroup>
+            <colgroup width="140"></colgroup>
+            <colgroup width="140"></colgroup>
+            <colgroup width="140"></colgroup>
+            <colgroup width="320"></colgroup>
+            <thead>
+                <tr>
+                    <th>NO.</th>
+                    <th>随附单据格式类型</th>
+                    <th>文件名字</th>
+                    <th>文件大小</th>
+                    <th>BASE64编码</th>
+                    <th><a href="###" id="J_add_tr"><b>+</b>添加</a></th>
+                </tr>
+            </thead>
+            <tbody id="grid_add_area">
+                <!--<tr>
+                    <th>1</th>
+                    <td><select name="" id=""></select></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><a href="###" class="db"><i class="wicons db dicon"></i></a></td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td><select name="" id=""></select></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><input type="text"></td>
+                    <td><a href="###" class="db"><i class="wicons db dicon"></i></a></td>
+                </tr>-->
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <div class="grid_pager grid_add_pager">
+                            <div class="pager">
+                            <a href="###" class="pager_prev">&lt; 上一页</a>
+                            <a href="###" class="pager_num active">1</a>
+                            <a href="###" class="pager_num">2</a>
+                            <span class="ellipsis">...</span>
+                            <a href="###" class="pager_num">3</a>
+                            <a href="###" class="pager_next">下一页 &gt;</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</script>
+
+<script type="text/tamplate" id="temp_tr">
+{{#each this}}
+    <tr>
+        <th>{{num @index}}</th>
+        <td><select name="" id=""></select></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><input type="text"></td>
+        <td><a href="###" class="db J_d_tr"><i class="wicons db dicon"></i></a></td>
+    </tr>
+{{/each}}
+</script>
 
 <script src="assets/js/core/jquery.min.js"></script>  
-<script src="assets/js/components/layer.js"></script>
 <script src="assets/js/core/template.js"></script>
 <script src="assets/js/tes_layer.js"></script> 
 </body>
